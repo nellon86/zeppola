@@ -140,8 +140,8 @@ android {
     productFlavors {
         create("stable") {
             dimension = "channel"
-            manifestPlaceholders["appLabel"] = "Pastiera"
-            manifestPlaceholders["imeLabel"] = "Pastiera"
+            manifestPlaceholders["appLabel"] = "Zeppola"
+            manifestPlaceholders["imeLabel"] = "Zeppola"
             buildConfigField("String", "RELEASE_CHANNEL", "\"stable\"")
             buildConfigField("boolean", "IS_FDROID_BUILD", if (isFdroidBuild) "true" else "false")
             buildConfigField("boolean", "ENABLE_GITHUB_UPDATE_CHECKS", if (isFdroidBuild) "false" else "true")
@@ -153,8 +153,8 @@ android {
                 versionCode = nightlyVersionCode
             }
             versionNameSuffix = nightlyVersionNameSuffix
-            manifestPlaceholders["appLabel"] = "Pastiera Nightly"
-            manifestPlaceholders["imeLabel"] = "Pastiera Nightly"
+            manifestPlaceholders["appLabel"] = "Zeppola Nightly"
+            manifestPlaceholders["imeLabel"] = "Zeppola Nightly"
             buildConfigField("String", "RELEASE_CHANNEL", "\"nightly\"")
             buildConfigField("boolean", "IS_FDROID_BUILD", if (isFdroidBuild) "true" else "false")
             buildConfigField("boolean", "ENABLE_GITHUB_UPDATE_CHECKS", if (isFdroidBuild) "false" else "true")
