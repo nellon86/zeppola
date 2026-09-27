@@ -5711,7 +5711,7 @@ class PhysicalKeyboardInputMethodService : InputMethodService(), ClicksAccessibi
         }
     }
 
-    private fun acceptSuggestionAtIndex(third: Int) {
+    private fun acceptSuggestionAtIndex(third: Int, allowAddWordGesture: Boolean = true) {
         val visibleSuggestions = visibleSuggestionStrings()
 
         // Clear latched UI layers when selecting a suggestion via trackpad.
@@ -5726,10 +5726,13 @@ class PhysicalKeyboardInputMethodService : InputMethodService(), ClicksAccessibi
         // Allow gesture only when suggestions bar should be visible/usable
         val addWordCandidate = suggestionController.pendingAddWord()
         val addWordGestureEnabled = SettingsManager.getTrackpadGestureAddWordEnabled(this)
-        val canAddWordByGesture = TrackpadAddWordGesturePolicy.canAddWordByGesture(
+        val canAddWordByGesture =
+    allowAddWordGesture &&
+        TrackpadAddWordGesturePolicy.canAddWordByGesture(
             third = third,
             addWordGestureEnabled = addWordGestureEnabled,
-            fullWidthWhenAddOnlyEnabled = SettingsManager.getTrackpadGestureAddWordFullWidthEnabled(this),
+            fullWidthWhenAddOnlyEnabled =
+                SettingsManager.getTrackpadGestureAddWordFullWidthEnabled(this),
             addWordCandidate = addWordCandidate,
             visibleSuggestions = visibleSuggestions
         )
@@ -5868,6 +5871,30 @@ class PhysicalKeyboardInputMethodService : InputMethodService(), ClicksAccessibi
             NotificationHelper.triggerHapticFeedback(this)
             Log.d(TAG, "Suggestion '$suggestion' inserted successfully")
         }
+    }
+
+    private fun acceptSuggestionByRank(rank: Int): Boolean {
+        if (rank !in 0..2) return false
+        if (symPage != 0) return false
+        if (!SettingsManager.getSuggestionsEnabled(this)) return false
+        if (shouldDisableSmartFeatures) return false
+
+        val visibleSuggestions = visibleSuggestionStrings()
+        if (visibleSuggestions.getOrNull(rank) == null) return false
+
+        val trackpadThird = when (rank) {
+            0 -> 1 // Primera sugerencia: centro
+            1 -> 2 // Segunda sugerencia: derecha
+            2 -> 0 // Tercera sugerencia: izquierda
+            else -> return false
+        }
+
+        acceptSuggestionAtIndex(
+            third = trackpadThird,
+            allowAddWordGesture = false
+        )
+
+        return true
     }
 
     private data class NativeTrackpadGestureStart(
