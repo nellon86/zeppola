@@ -519,8 +519,9 @@ class InputEventRouter(
                         callbacks.clearCtrlOneShot()
                     },
                     updateStatusBar = callbacks.updateStatusBar,
-                    callSuper = callbacks.callSuper,
-                    toggleMinimalUi = callbacks.toggleMinimalUi
+callSuper = callbacks.callSuper,
+toggleMinimalUi = callbacks.toggleMinimalUi,
+acceptSuggestionByRank = callbacks.acceptSuggestionByRank
                 )
             ) {
                 return EditableFieldRoutingResult.Consume
@@ -1294,10 +1295,11 @@ class InputEventRouter(
         selectionShiftActive: Boolean = false,
         forceBasicContextMenuActions: Boolean = false,
         clearCtrlOneShot: () -> Unit,
-        updateStatusBar: () -> Unit,
-        callSuper: () -> Boolean,
-        toggleMinimalUi: () -> Unit
-    ): Boolean {
+updateStatusBar: () -> Unit,
+callSuper: () -> Boolean,
+toggleMinimalUi: () -> Unit,
+acceptSuggestionByRank: (Int) -> Boolean = { false }
+): Boolean {
         val isPhysicalCtrlCombo = event?.isCtrlPressed == true || ctrlPhysicallyPressed
         val useNavModeForHeldCtrl = SettingsManager.getNavModeCtrlHoldEnabled(context)
         val useLayoutAwareCtrlShortcuts = SettingsManager.getLayoutAwareCtrlShortcutsEnabled(context)
