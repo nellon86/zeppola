@@ -298,6 +298,7 @@ class InputEventRouter(
         val toggleMinimalUi: () -> Unit,
         val handleBoundaryText: (String, InputConnection?) -> Boolean = { _, _ -> false },
         val onShiftOneShotToggledOff: () -> Unit = {}
+        val acceptSuggestionByRank: (Int) -> Boolean = { false }
     )
 
     fun routeEditableFieldKeyDown(
