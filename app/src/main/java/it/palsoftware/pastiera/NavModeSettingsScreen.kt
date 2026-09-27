@@ -1,5 +1,6 @@
 package it.palsoftware.pastiera
 
+import android.annotation.SuppressLint
 import android.content.Context
 import android.view.KeyEvent
 import androidx.compose.foundation.border
@@ -52,6 +53,7 @@ import kotlin.math.min
 /**
  * Nav Mode settings screen with keyboard visualization.
  */
+@SuppressLint("UnusedBoxWithConstraintsScope")
 @Composable
 fun NavModeSettingsScreen(
     modifier: Modifier = Modifier,
@@ -620,7 +622,6 @@ private fun KeyMappingDialog(
     val commandTargets = remember { CommandRegistry(context).getCommands(CommandSurface.NavMode) }
     val defaultLabel = defaultMapping?.let { getMappingLabel(it) }
     val dialogMaxHeight = LocalConfiguration.current.screenHeightDp.dp * 0.9f
-    val gridMaxHeight = dialogMaxHeight * 0.6f
 
     BasicAlertDialog(
         onDismissRequest = onDismiss,
@@ -650,7 +651,11 @@ private fun KeyMappingDialog(
                     fontWeight = FontWeight.SemiBold
                 )
 
+                // Bloque de contenido variable: ocupa solo el espacio sobrante,
+                // dejando siempre sitio para el Row de botones de abajo.
                 Column(
+                    modifier = Modifier
+                        .weight(1f, fill = false),
                     verticalArrangement = Arrangement.spacedBy(8.dp)
                 ) {
                     // Type selection
@@ -736,7 +741,7 @@ private fun KeyMappingDialog(
                             columns = GridCells.Fixed(2),
                             horizontalArrangement = Arrangement.spacedBy(8.dp),
                             verticalArrangement = Arrangement.spacedBy(1.dp),
-                            modifier = Modifier.heightIn(max = gridMaxHeight)
+                            modifier = Modifier.weight(1f, fill = false)
                         ) {
                             items(keycodes) { keycode ->
                                 FilterChip(
@@ -765,7 +770,7 @@ private fun KeyMappingDialog(
                             columns = GridCells.Fixed(2),
                             horizontalArrangement = Arrangement.spacedBy(8.dp),
                             verticalArrangement = Arrangement.spacedBy(1.dp),
-                            modifier = Modifier.heightIn(max = gridMaxHeight)
+                            modifier = Modifier.weight(1f, fill = false)
                         ) {
                             items(actions) { action ->
                                 FilterChip(
@@ -781,7 +786,7 @@ private fun KeyMappingDialog(
                             columns = GridCells.Fixed(2),
                             horizontalArrangement = Arrangement.spacedBy(8.dp),
                             verticalArrangement = Arrangement.spacedBy(1.dp),
-                            modifier = Modifier.heightIn(max = gridMaxHeight)
+                            modifier = Modifier.weight(1f, fill = false)
                         ) {
                             items(commandTargets, key = { it.id }) { command ->
                                 FilterChip(
@@ -801,6 +806,7 @@ private fun KeyMappingDialog(
                     }
                 }
 
+                // Row de botones: fuera del weight, siempre visible y fijo abajo.
                 Row(
                     modifier = Modifier
                         .fillMaxWidth()
