@@ -749,14 +749,18 @@ private fun KeyMappingDialog(
                         }
                     } else if (selectedType == "action") {
                         val actions = listOf(
-                            "copy", "paste", "cut", "undo",
-                            "select_all", "expand_selection_left", "expand_selection_right",
-                            "move_word_left", "move_word_right",
-                            "expand_selection_word_left", "expand_selection_word_right",
-                            "page_start", "page_end",
-                            "toggle_minimal_ui",
-                            "media_play_pause", "media_previous", "media_next"
-                        )
+    "copy", "paste", "cut", "undo",
+    "select_all",
+    "accept_suggestion_1",
+    "accept_suggestion_2",
+    "accept_suggestion_3",
+    "expand_selection_left", "expand_selection_right",
+    "move_word_left", "move_word_right",
+    "expand_selection_word_left", "expand_selection_word_right",
+    "page_start", "page_end",
+    "toggle_minimal_ui",
+    "media_play_pause", "media_previous", "media_next"
+)
                         LazyVerticalGrid(
                             columns = GridCells.Fixed(2),
                             horizontalArrangement = Arrangement.spacedBy(8.dp),
@@ -895,6 +899,9 @@ private fun getActionLabel(action: String): String {
         "cut" -> stringResource(R.string.nav_mode_action_cut)
         "undo" -> stringResource(R.string.nav_mode_action_undo)
         "select_all" -> stringResource(R.string.nav_mode_action_select_all)
+        "accept_suggestion_1" -> stringResource(R.string.nav_mode_action_accept_suggestion_1)
+        "accept_suggestion_2" -> stringResource(R.string.nav_mode_action_accept_suggestion_2)
+        "accept_suggestion_3" -> stringResource(R.string.nav_mode_action_accept_suggestion_3)
         "expand_selection_left" -> stringResource(R.string.nav_mode_action_expand_selection_left)
         "expand_selection_right" -> stringResource(R.string.nav_mode_action_expand_selection_right)
         "move_word_left" -> stringResource(R.string.nav_mode_action_move_word_left)
@@ -933,6 +940,14 @@ private fun getMappingLabelShort(mapping: KeyMappingLoader.CtrlMapping): String?
             "cut" -> stringResource(R.string.nav_mode_action_cut)
             "undo" -> stringResource(R.string.nav_mode_action_undo)
             "select_all" -> stringResource(R.string.nav_mode_action_select_all)
+            "accept_suggestion_1" ->
+    stringResource(R.string.nav_mode_action_accept_suggestion_1)
+
+"accept_suggestion_2" ->
+    stringResource(R.string.nav_mode_action_accept_suggestion_2)
+
+"accept_suggestion_3" ->
+    stringResource(R.string.nav_mode_action_accept_suggestion_3)
             "expand_selection_left" -> stringResource(R.string.nav_mode_action_expand_selection_left)
             "expand_selection_right" -> stringResource(R.string.nav_mode_action_expand_selection_right)
             "move_word_left" -> stringResource(R.string.nav_mode_action_move_word_left)
