@@ -1,4 +1,4 @@
-# Pastiera
+# Zeppola
 
 <p align="center">
   <img src="docs/branding/pastiera-logo.png" alt="Pastiera" width="152">
@@ -6,21 +6,10 @@
   <img src="docs/branding/plektra-logo.svg" alt="Plektra" width="152">
 </p>
 
-## Pastiera continues as Plektra
+## What’s different
 
-Pastiera 0.86 is the final planned Pastiera release with new features. Security-relevant issues will continue to be fixed and released as updates. Active development continues as [Plektra](https://github.com/pkb-rocks/plektra).
-
-**[Continue with Plektra →](https://github.com/pkb-rocks/plektra)**
-
-## What’s new in 0.86
-
-- Redesigned, searchable Settings with direct links, reliable navigation, and clearer device-specific sections.
-- A cleaner fit for the Titan 2 Elite’s rounded display and dedicated controls for Clicks keyboards.
-- A more capable on-screen keyboard with custom themes, presets, software modifiers, a number row, and better accessibility.
-- Faster input through snippets, emoji and symbol shortcodes, additional layout-switch shortcuts, and refined smart punctuation.
-- Better suggestions using multiple dictionaries and locally learned next-word sequences.
-- More reliable candidate and emoji surfaces, stricter validation for imports and backup archives, and support for custom typing sounds.
-- New language resources, including Greek, plus updated Unicode and emoji data.
+- Added to NAV the action 'Select suggestion' of the prediction. Adding the possibility to use a shortcut defined in the NAV mode instead of a swipe.
+- Corrected the NAV mode as it didn't show the save button correctly
 
 Support the project on [OpenCollective](https://pastiera.eu/donate)
 
