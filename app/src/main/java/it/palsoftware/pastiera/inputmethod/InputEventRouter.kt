@@ -1367,6 +1367,31 @@ acceptSuggestionByRank: (Int) -> Boolean = { false }
             when (ctrlMapping.type) {
                 "action" -> {
                     when (ctrlMapping.value) {
+                        "accept_suggestion_1",
+        "accept_suggestion_2",
+        "accept_suggestion_3" -> {
+            val rank = when (ctrlMapping.value) {
+                "accept_suggestion_1" -> 0
+                "accept_suggestion_2" -> 1
+                "accept_suggestion_3" -> 2
+                else -> return callSuper()
+            }
+
+            KeyboardEventTracker.notifyKeyEvent(
+                keyCode,
+                event,
+                "KEY_DOWN",
+                origin = "ime_router",
+                outputKeyCode = null,
+                outputKeyCodeName = ctrlMapping.value
+            )
+
+            return if (acceptSuggestionByRank(rank)) {
+                true
+            } else {
+                callSuper()
+            }
+        }
                         "expand_selection_left" -> {
                             KeyboardEventTracker.notifyKeyEvent(
                                 keyCode,
