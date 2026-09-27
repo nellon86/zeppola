@@ -5014,11 +5014,18 @@ class PhysicalKeyboardInputMethodService : InputMethodService(), ClicksAccessibi
                 isLongPressSuppressed = { code ->
                     multiTapController.isLongPressSuppressed(code)
                 },
-                toggleMinimalUi = { keyboardVisibilityController.togglePastierinaMode() },
-                handleBoundaryText = { text, inputConnection ->
-                    handleBoundaryTextBeforeCommit(text, inputConnection)
-                },
-                onShiftOneShotToggledOff = { suppressAutoCapRenderingAtCursorIfNeeded() }
+                toggleMinimalUi = {
+    keyboardVisibilityController.togglePastierinaMode()
+},
+handleBoundaryText = { text, inputConnection ->
+    handleBoundaryTextBeforeCommit(text, inputConnection)
+},
+onShiftOneShotToggledOff = {
+    suppressAutoCapRenderingAtCursorIfNeeded()
+},
+acceptSuggestionByRank = { rank ->
+    acceptSuggestionByRank(rank)
+}
             )
         )
 
