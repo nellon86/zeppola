@@ -1214,6 +1214,9 @@ Each key can be configured as Keycode, Action, Native Ctrl, or None. Use overrid
     <string name="nav_mode_action_cut">Cut</string>
     <string name="nav_mode_action_undo">Undo</string>
     <string name="nav_mode_action_select_all">SelAll</string>
+    <string name="nav_mode_action_accept_suggestion_1">Suggestion 1</string>
+<string name="nav_mode_action_accept_suggestion_2">Suggestion 2</string>
+<string name="nav_mode_action_accept_suggestion_3">Suggestion 3</string>
     <string name="nav_mode_action_expand_selection_left">←Sel</string>
     <string name="nav_mode_action_expand_selection_right">→Sel</string>
     <string name="nav_mode_action_move_word_left">←Word</string>
